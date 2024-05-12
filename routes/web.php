@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecetasController;
+use App\Http\Controllers\RolesController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,6 +37,7 @@ Route::get('/acerca-de', function () {
     return view('acerca-de');
 })->name('acerca-de');
 
+Route::resource('/roles', RolesController::class)->middleware(['auth',AdminMiddleware::class]);
 Route::resource('/recetas', RecetasController::class)->middleware('auth');
 Route::post('/recetas/create/save', [RecetasController::class, 'save'])->middleware('auth');
 

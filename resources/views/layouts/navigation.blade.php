@@ -9,8 +9,6 @@
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('inicio')" :active="request()->routeIs('inicio')">
@@ -26,6 +24,12 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('acerca-de')" :active="request()->routeIs('acerca-de')">
                         {{ __('Acerca de') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles')" class="text-red-600">
+                        {{ __('Administrar roles') }}
                     </x-nav-link>
                 </div>
             </div>

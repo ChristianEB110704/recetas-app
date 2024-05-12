@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('roles_id')->default(2);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,6 +36,16 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        DB::table('users')->insert([
+            [
+                'name' => 'administrador',
+                'email' => 'admin@example.com',
+                'password' => bcrypt('Administrador12_'), // Recuerda siempre cifrar tus contraseñas
+                'roles_id' => 1, // Establecer el rol como Administrador
+                // Aquí puedes agregar más campos si es necesario
+            ],
+        ]);
     }
 
     /**
