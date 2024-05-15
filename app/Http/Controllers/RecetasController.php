@@ -40,7 +40,7 @@ class RecetasController extends Controller
         $pasos = $request->input('pasos');
         $imagen = $request->file('imagen')->store('public');
         
-        if ($user->name=="admin"){
+        if ($user->roles_id==1){
             $nuevaReceta=Recetas::create([
                 'nombre' => $titulo,
                 'duracion' => $duracion,

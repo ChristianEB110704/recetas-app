@@ -25,7 +25,6 @@ class AdminMiddleware
         if (!$this->isAdmin($request->user())) {
             abort(403, 'Acceso no autorizado.');
         }
-
         return $next($request);
     }
 

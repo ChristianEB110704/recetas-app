@@ -37,9 +37,18 @@ Route::get('/acerca-de', function () {
     return view('acerca-de');
 })->name('acerca-de');
 
-Route::resource('/roles', RolesController::class)->middleware(['auth',AdminMiddleware::class]);
+Route::get('/roles', [RolesController::class,"index"])->name('roles.index')->middleware(['auth',AdminMiddleware::class]);
+Route::get('/roles/crear-roles/{nombre?}', [RolesController::class, 'crearRoles'])->name('roles.crearRoles')->middleware(['auth',AdminMiddleware::class]);
+Route::get('/roles/borrar-roles/{id}', [RolesController::class, 'borrarRoles'])->name('roles.borrarRoles')->middleware(['auth',AdminMiddleware::class]);
+Route::get('/roles/asignar', [RolesController::class, 'asignarRoles'])->name('roles.asignarRoles')->middleware(['auth',AdminMiddleware::class]);
+Route::post('/roles/save', [RolesController::class, 'save'])->middleware(['auth',AdminMiddleware::class]);
+
 Route::resource('/recetas', RecetasController::class)->middleware('auth');
 Route::post('/recetas/create/save', [RecetasController::class, 'save'])->middleware('auth');
+
+//Route::middleware([AdminMiddleware::class])->group(function () {
+//});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
