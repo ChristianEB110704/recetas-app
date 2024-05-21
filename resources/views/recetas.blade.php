@@ -6,12 +6,14 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Recetas') }}
         </h2>
-        
-        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-            <x-nav-link :href="route('recetas.create')" :active="request()->routeIs('recetas')">
-                {{ __('Crear Receta') }}
+        <x-nav-link :href="route('recetas.create')" :active="request()->routeIs('recetas')">
+            {{ __('Crear Receta') }}
+        </x-nav-link>
+        @if(auth()->user()->roles_id==1)
+            <x-nav-link :href="route('recetas.adminRecetas')" :active="request()->routeIs('recetas')">
+                {{ __('Administrar Recetas') }}
             </x-nav-link>
-        </div>
+        @endif
     </x-slot>
 
     <div class="py-12">

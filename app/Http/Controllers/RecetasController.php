@@ -25,11 +25,6 @@ class RecetasController extends Controller
         $categorias= Categoria::all();
         return view('crear_receta',['categorias'=>$categorias]);
     }
-
-    public function verReceta(int $id){
-        $panes= Recetas::all();
-        return view('ver_receta');
-    }
     /**
      * Store a newly created resource in storage.
      */
@@ -73,28 +68,12 @@ class RecetasController extends Controller
         
         return redirect()->route("recetas.index");
     }
+    public function adminRecetas(){
+        $recetas=Recetas::all();
+        $recetasSV=RecetasSinValidar::all();
+        $categoria=Categoria::all();
+        $imagenes=Imagenes::all();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view("admin-recetas",["recetas"=>$recetas,"recetasSV"=>$recetasSV,"categoria"=>$categoria,"imagenes"=> $imagenes]);
     }
 }
