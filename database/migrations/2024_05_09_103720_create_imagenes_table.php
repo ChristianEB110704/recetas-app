@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('imagenes', function (Blueprint $table) {
             $table->id();
             $table->string('ruta');
+            $table->string('tabla');
             $table->foreignId('recetas_id');
             $table->timestamps();
         });

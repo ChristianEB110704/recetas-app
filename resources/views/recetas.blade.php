@@ -22,7 +22,7 @@
                     <a :href="route('recetas.verReceta', ['id' => $receta->id])" :active="request()->routeIs('recetas')">
                         <div class="bg-white shadow-md rounded-lg p-6 mb-4 flex items-center"> <!-- Usamos flex para alinear la imagen y el contenido -->
                             @foreach($imagenes as $img)
-                                @if ($receta->id == $img->recetas_id)
+                                @if ($receta->id == $img->recetas_id && $img->tabla == "recetas")
                                     <img src="{{ asset(Storage::disk('public')->url($img->ruta)) }}" alt="Imagen" class="w-32 h-32 rounded-md mr-6" style="max-width: 120px; height: auto; margin-right:10px;"> <!-- Ajusta el tamaño y el borde de la imagen según tus necesidades -->
                                 @endif
                             @endforeach

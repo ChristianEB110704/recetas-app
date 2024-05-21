@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recetas', function (Blueprint $table) {
+        Schema::create('recetas_sin_validar', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->integer('duracion');
@@ -22,12 +22,11 @@ return new class extends Migration
             $table->timestamps(); 
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('recetas');
+        Schema::dropIfExists('recetas_sin_validar');
     }
 };

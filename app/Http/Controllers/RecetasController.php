@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Recetas;
+use App\Models\Categoria;
+use App\Models\RecetasSinValidar;
 use App\Models\Imagenes;
 
 
@@ -20,8 +22,8 @@ class RecetasController extends Controller
     }
 
     public function create(){
-        $panes= Recetas::all();
-        return view('crear_receta');
+        $categorias= Categoria::all();
+        return view('crear_receta',['categorias'=>$categorias]);
     }
 
     public function verReceta(int $id){
@@ -50,10 +52,23 @@ class RecetasController extends Controller
                 'user_id' => $user->id, // Asignar el ID del usuario autenticado
             ]);
             $ruta=str_replace("public/","",$imagen);
-            Imagenes::create(['ruta' => $ruta,"recetas_id"=> $nuevaReceta->id]);
+            Imagenes::create(['ruta' => $ruta,"recetas_id"=> $nuevaReceta->id,"tabla"=>"recetas"]);
+        }
+        elseif ($user->roles_id==3) {
+            return abort(403, 'Cuenta suspendida por baneo de un administrador');
         }
         else{
-
+            $nuevaReceta=RecetasSinValidar::create([
+                'nombre' => $titulo,
+                'duracion' => $duracion,
+                'categoria' => $categoria,
+                'descripcion' => $descripcion,
+                'pasos' => $pasos,
+                'user_id' => $user->id, // Asignar el ID del usuario autenticado
+            ]);
+            $ruta=str_replace("public/","",$imagen);
+            Imagenes::create(['ruta' => $ruta,"recetas_id"=> $nuevaReceta->id,"tabla"=>"recetas_sin_validar"]);
+            
         }
         
         return redirect()->route("recetas.index");

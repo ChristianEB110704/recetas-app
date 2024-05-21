@@ -22,7 +22,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($roles as $rol)
-                                    @if ($rol->id===1 || $rol->id===2)
+                                    @if ($rol->id===1 || $rol->id===2 || $rol->id===3)
                                         <tr class="bg-gray-100">
                                             <th class="border px-4 py-2">
                                                 {{$rol->id}}

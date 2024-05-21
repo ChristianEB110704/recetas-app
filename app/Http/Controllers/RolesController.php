@@ -40,7 +40,7 @@ class RolesController extends Controller
     public function borrarRoles(int $id)
     {
         $rol=Roles::find($id);
-        if($rol->name=="Administrador" || $rol->name=="Usuario"){
+        if($rol->id==1 || $rol->id==1 || $rol->id==3){
             echo "No se pudo borrar este rol";
         }
         $rol->delete();

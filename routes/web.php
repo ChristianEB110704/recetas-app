@@ -24,14 +24,9 @@ Route::get('/storage/imagenes/{archivo}', function ($archivo) {
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/inicio', function () {
     return view('inicio');
-})->name('inicio');
+})->middleware(['auth', 'verified'])->name('inicio');
 
 Route::get('/acerca-de', function () {
     return view('acerca-de');

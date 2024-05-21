@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('categorias', function (Blueprint $table) {
+            $table->string("name")->primary();
             $table->timestamps();
         });
-        DB::table('roles')->insert([
-            ['name' => 'Administrador'],
-            ['name' => 'Usuario'],
-            ['name' => 'Baneado'],
+        DB::table('categorias')->insert([
+            ['name' => 'amargo'],
+            ['name' => 'dulce'],
+            ['name' => 'salado'],
             // Añade más roles si lo deseas
         ]);
-
     }
 
     /**
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('categorias');
     }
 };
