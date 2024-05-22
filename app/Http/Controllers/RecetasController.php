@@ -8,7 +8,7 @@ use App\Models\Recetas;
 use App\Models\Categoria;
 use App\Models\RecetasSinValidar;
 use App\Models\Imagenes;
-
+use Illuminate\Support\Facades\Storage;
 
 class RecetasController extends Controller
 {
@@ -75,5 +75,57 @@ class RecetasController extends Controller
         $imagenes=Imagenes::all();
 
         return view("admin-recetas",["recetas"=>$recetas,"recetasSV"=>$recetasSV,"categoria"=>$categoria,"imagenes"=> $imagenes]);
+    }
+
+    public function delete(string $tipo,int $id){
+        $datos="";
+        if($tipo=="r"){
+            $receta=Recetas::find($id);
+            $datos="recetas";
+            $receta->delete();
+        }elseif($tipo=="rsv"){
+            $receta=RecetasSinValidar::find($id);
+            $datos="recetas_sin_validar";
+            $receta->delete();
+        }elseif($tipo=="validar"){
+            $this->verificar($id);
+            return redirect()->route("recetas.adminRecetas");
+        }
+        else{
+            return abort(403,"Datos introducidos no validos");
+        }   
+        $imagenes = Imagenes::where('tabla', $datos)
+                            ->where('recetas_id', $id)
+                            ->first();
+
+        $filePath = 'public/'. $imagenes->ruta;
+
+        $imagenes->delete();
+
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+        }
+        return redirect()->route("recetas.adminRecetas");
+    }
+
+    public function verificar(int $id){
+        $recetaSV=RecetasSinValidar::find($id);
+        $receta=Recetas::create([
+            'nombre' => $recetaSV->nombre,
+            'duracion' => $recetaSV->duracion,
+            'categoria' => $recetaSV->categoria,
+            'descripcion' => $recetaSV->descripcion,
+            'pasos' => $recetaSV->pasos,
+            'user_id' => $recetaSV->user_id,
+        ]);
+
+        $imagen = Imagenes::where('tabla', "recetas_sin_validar")
+                            ->where('recetas_id', $id)
+                            ->first();
+        $imagen->tabla="recetas";
+        $imagen->recetas_id=$receta->id;
+        $recetaSV->delete();
+        $receta->save();
+        $imagen->save();
     }
 }

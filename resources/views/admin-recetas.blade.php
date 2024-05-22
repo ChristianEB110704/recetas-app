@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Administrar Roles') }}
+            {{ __('Administrar Recetas') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -28,7 +28,9 @@
                                             <td class="border px-4 py-2">{{$receta->user_id}}</td>
                                             <td class="border px-4 py-2">{{$receta->nombre}}</td>
                                             <td class="border px-4 py-2">{{$receta->categoria}}</td>
-                                            <td class="border px-4 py-2">Eliminar</td>
+                                            <td class="border px-4 py-2">
+                                                <a href="/recetas/admin/r/{{  $receta->id }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este rol?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>
+                                            </td>
                                         </tr>
                                     
                                 @endforeach
@@ -68,14 +70,20 @@
                                             <td class="border px-4 py-2">{{$receta->descripcion}}</td>
                                             <td class="border px-4 py-2">{{$receta->pasos}}</td>
                                             <td class="border px-4 py-2">{{$receta->categoria}}</td>
-                                            <td class="border px-4 py-2">Ok</td>
-                                            <td class="border px-4 py-2">Eliminar</td>
+                                            <td class="border px-4 py-2">
+                                                <a href="/recetas/admin/validar/{{  $receta->id }}" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:blue-green-500 rounded">Ok</a>
+                                            </td>
+                                            <td class="border px-4 py-2">
+                                                <a href="/recetas/admin/rsv/{{  $receta->id }}" onclick="return confirm('¿Estás seguro de que deseas eliminar este rol?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>
+                                            </td>
+                                            
                                         </tr>
                                     
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
+                        <!--Añadir lista de Categoria para insertar una categoria o borrarla-->
                     </div>
                 </div>
             </div>
