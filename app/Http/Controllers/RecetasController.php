@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Recetas;
 use App\Models\Categoria;
 use App\Models\RecetasSinValidar;
+use App\Models\User;
 use App\Models\Imagenes;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +25,12 @@ class RecetasController extends Controller
     public function create(){
         $categorias= Categoria::all();
         return view('crear_receta',['categorias'=>$categorias]);
+    }
+
+    public function verReceta(Request $request){
+       $receta=Recetas::find($request->input("id")); 
+       $users=User::all(); 
+       return view("ver-receta",["receta"=>$receta,"users"=> $users]);
     }
     /**
      * Store a newly created resource in storage.

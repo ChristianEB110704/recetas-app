@@ -21,7 +21,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach($recetas as $receta)
-                    <a :href="route('recetas.verReceta', ['id' => $receta->id])" :active="request()->routeIs('recetas')">
+                    <a href="{{route('recetas.verReceta', ['id' => $receta->id])}}" active="{{request()->routeIs('recetas')}}">
                         <div class="bg-white shadow-md rounded-lg p-6 mb-4 flex items-center"> <!-- Usamos flex para alinear la imagen y el contenido -->
                             @foreach($imagenes as $img)
                                 @if ($receta->id == $img->recetas_id && $img->tabla == "recetas")

@@ -41,6 +41,7 @@ Route::post('/roles/save', [RolesController::class, 'save'])->middleware(['auth'
 Route::get('/recetas', [RecetasController::class,"index"])->name("recetas.index")->middleware('auth');
 Route::get('/recetas/create', [RecetasController::class,"create"])->name("recetas.create")->middleware('auth');
 Route::post('/recetas/create/save', [RecetasController::class, 'save'])->middleware('auth');
+Route::get('/recetas/ver-recetas', [RecetasController::class, 'verReceta'])->name("recetas.verReceta")->middleware('auth');
 Route::get('/recetas/admin', [RecetasController::class, 'adminRecetas'])->name('recetas.adminRecetas')->middleware(['auth',AdminMiddleware::class]);
 Route::get('/recetas/admin/{tipo}/{id}', [RecetasController::class, 'delete'])->middleware(['auth',AdminMiddleware::class]);
 
