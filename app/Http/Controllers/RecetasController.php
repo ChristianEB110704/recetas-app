@@ -40,8 +40,8 @@ class RecetasController extends Controller
         $titulo = $request->input('nombre');
         $duracion = $request->input('duracion');
         $categoria = $request->input('categoria');
-        $descripcion = $request->input('descripcion');
-        $pasos = $request->input('pasos');
+        $descripcion =  nl2br($request->input('descripcion'));
+        $pasos =  nl2br($request->input('pasos'));
         $imagen = $request->file('imagen')->store('public');
         
         if ($user->roles_id==1){
