@@ -45,6 +45,9 @@ Route::get('/recetas/ver-recetas', [RecetasController::class, 'verReceta'])->nam
 Route::get('/recetas/admin', [RecetasController::class, 'adminRecetas'])->name('recetas.adminRecetas')->middleware(['auth',AdminMiddleware::class]);
 Route::get('/recetas/admin/{tipo}/{id}', [RecetasController::class, 'delete'])->middleware(['auth',AdminMiddleware::class]);
 
+Route::get('/categoria/delete', [RecetasController::class, 'borrarCat'])->name("recetas.borrarCat")->middleware(['auth',AdminMiddleware::class]);
+Route::get('/categoria/create', [RecetasController::class, 'crearCat'])->name("recetas.crearCat")->middleware(['auth',AdminMiddleware::class]);
+
 //Route::middleware([AdminMiddleware::class])->group(function () {
 //});
 
