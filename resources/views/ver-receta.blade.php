@@ -56,7 +56,7 @@
                         Pasos
                     </h1>
                     <p class="my-4 text-lg text-gray-500">
-                        {{$receta->pasos}}
+                        {!! nl2br(strip_tags($receta->pasos)) !!}
                     </p>
                     <br>
                     <a href="{{route('recetas.index')}}" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:blue-blue-500 rounded">

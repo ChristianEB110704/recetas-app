@@ -9,7 +9,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+                        <div class="w-full 2xl:w-1/4 px-3 mb-6 md:mb-0">
                             <table class="table-fixed">
                                 <thead>
                                     <tr>
@@ -38,7 +38,7 @@
                             </table>
                         </div>
 
-                        <div class="w-full md:w-3/4 px-3 mb-6 md:mb-0">
+                        <div class="w-full xl:w-2/4 px-3 mb-6 md:mb-0">
                             <table class="table-fixed">
                                 <thead>
                                     <tr>
@@ -83,6 +83,35 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="w-full xl:w-1/4 px-3 mb-6 md:mb-0">
+                            <table class="table-fixed">
+                                <thead>
+                                    <tr>
+                                        <th class="w-1/2 px-4 py-2">Nombre</th>
+                                        <th class="w-1/2 px-4 py-2">Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($categorias as $categoria)
+                                    <tr>
+                                        <td class="w-1/2 px-4 py-2">{{$categoria->name}}</td>
+                                        <td class="w-1/2 px-4 py-2">
+                                        <a href="{{route('recetas.borrarCat',['name'=>$categoria->name])}}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoria?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                    <tr>
+                                        <td class="w-1/2 px-4 py-2">
+                                            <input type="text" id="catNueva"/>
+                                        </td>
+                                        <td class="w-1/2 px-4 py-2">
+                                        <a href="#" onclick="crearCategoria()" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Crear categoria</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <!--Añadir lista de Categoria para insertar una categoria o borrarla-->
                     </div>
                 </div>
@@ -90,3 +119,16 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+function crearCategoria() {
+    // Obtener el valor del input
+    var catNueva = document.getElementById('catNueva').value;
+    
+    // Crear la URL con el nuevo valor de categoria
+    var url = '/categoria/create?name='+catNueva;
+    
+    // Redirigir a la nueva URL
+    window.location.href = url;
+}
+</script>

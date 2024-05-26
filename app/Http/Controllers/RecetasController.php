@@ -40,8 +40,8 @@ class RecetasController extends Controller
         $titulo = $request->input('nombre');
         $duracion = $request->input('duracion');
         $categoria = $request->input('categoria');
-        $descripcion = $request->input('descripcion');
-        $pasos = $request->input('pasos');
+        $descripcion =  nl2br($request->input('descripcion'));
+        $pasos =  nl2br($request->input('pasos'));
         $imagen = $request->file('imagen')->store('public');
         
         if ($user->roles_id==1){
@@ -78,10 +78,10 @@ class RecetasController extends Controller
     public function adminRecetas(){
         $recetas=Recetas::all();
         $recetasSV=RecetasSinValidar::all();
-        $categoria=Categoria::all();
+        $categorias=Categoria::all();
         $imagenes=Imagenes::all();
 
-        return view("admin-recetas",["recetas"=>$recetas,"recetasSV"=>$recetasSV,"categoria"=>$categoria,"imagenes"=> $imagenes]);
+        return view("admin-recetas",["recetas"=>$recetas,"recetasSV"=>$recetasSV,"categorias"=>$categorias,"imagenes"=> $imagenes]);
     }
 
     public function delete(string $tipo,int $id){
@@ -134,5 +134,17 @@ class RecetasController extends Controller
         $recetaSV->delete();
         $receta->save();
         $imagen->save();
+    }
+
+    public function borrarCat(Request $request){
+        $categoria =Categoria::where('name', $request->input("name"))->first();
+        $categoria->delete();
+        return redirect()->route("recetas.adminRecetas");
+    }
+    public function crearCat(Request $request){
+        Categoria::create([
+            'name' => $request->input("name"),
+        ]);
+        return redirect()->route("recetas.adminRecetas");
     }
 }

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->integer('duracion');
             $table->string('categoria');
-            $table->string('descripcion');
-            $table->string('pasos');
+            $table->longtext('descripcion');
+            $table->longtext('pasos');
             $table->foreignId('user_id');
             $table->timestamps(); 
         });
