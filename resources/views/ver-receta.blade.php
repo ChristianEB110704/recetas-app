@@ -104,17 +104,47 @@
                             @endforeach
                         </h5>
                         <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">{{$comentario->comentario}}</p>
-                        {{$comentario->like}}
-                        <button class="inline-flex font-medium items-center text-blue-600 hover:underline">
-                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
-                                <path d="M15 1.943v12.114a1 1 0 0 1-1.581.814L8 11V5l5.419-3.871A1 1 0 0 1 15 1.943ZM7 4H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V4ZM4 17v-5h1v5H4ZM16 5.183v5.634a2.984 2.984 0 0 0 0-5.634Z"/>
-                            </svg>
-                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 19">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 12 5.419 3.871A1 1 0 0 0 16 15.057V2.943a1 1 0 0 0-1.581-.814L9 6m0 6V6m0 6H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h7m-5 6h3v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5Zm15-3a3 3 0 0 1-3 3V6a3 3 0 0 1 3 3Z"/>
-                            </svg>
-                        </button>
+                        <div class="flex justify-between">
+                            <div class="flex items-start">
+                                {{$comentario->like}}
+                                    @if (in_array($comentario->id,$likes))
+                                    
+                                    <a class="inline-flex font-medium items-center text-blue-600 hover:underline">
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+                                            <path d="M15 1.943v12.114a1 1 0 0 1-1.581.814L8 11V5l5.419-3.871A1 1 0 0 1 15 1.943ZM7 4H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2V4ZM4 17v-5h1v5H4ZM16 5.183v5.634a2.984 2.984 0 0 0 0-5.634Z"/>
+                                        </svg>
+                                    </a>
+                                    @else
+                                    <button>
+                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 19">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 12 5.419 3.871A1 1 0 0 0 16 15.057V2.943a1 1 0 0 0-1.581-.814L9 6m0 6V6m0 6H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h7m-5 6h3v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-5Zm15-3a3 3 0 0 1-3 3V6a3 3 0 0 1 3 3Z"/>
+                                        </svg>
+                                    </button>
+                                    @endif
+                                </a> 
+                            </div>
+                            <div class="items-end">
+                                <a href="{{ route('comentario.delete', ['id' => $comentario->id]) }}" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>    
+                            </div>
+                        </div>
                     </div>
                 @endforeach
+                <div class="bg-white shadow-lg rounded-lg p-6 w-full">
+                    <h2 class="text-2xl font-semibold mb-4">Deja un comentario</h2>
+                    <form action="{{route("comentario.create")}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="recetas_id" value="{{$receta->id}}" ></input>
+                        <div class="mb-4">
+                            <label for="comment" class="block text-sm font-medium text-gray-700">Comentario</label>
+                            <textarea id="comment" name="comment" rows="4" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" required></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:blue-blue-500 rounded">
+                            Enviar
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
             $table->longtext('comentario');
-            $table->integer("like");
+            $table->integer("like")->default(0);
             $table->foreignId('user_id');
             $table->foreignId('recetas_id');
             $table->timestamps();

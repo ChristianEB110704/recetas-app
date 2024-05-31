@@ -8,6 +8,7 @@ use App\Models\Recetas;
 use App\Models\Categoria;
 use App\Models\RecetasSinValidar;
 use App\Models\User;
+use App\Models\ComentarioUsuario;
 use App\Models\Comentario;
 use App\Models\Imagenes;
 use Illuminate\Support\Facades\Storage;
@@ -32,7 +33,12 @@ class RecetasController extends Controller
        $receta=Recetas::find($request->input("id")); 
        $users=User::all(); 
        $comentarios=Comentario::where("recetas_id",$receta->id)->get();
-       return view("ver-receta",["receta"=>$receta,"users"=> $users,"comentarios"=>$comentarios]);
+       $l=ComentarioUsuario::where("user_id",Auth::user()->id)->get();
+       $likes=[];
+       foreach ($l as $like) {
+        $likes[] = $like->comentario_id;
+       }
+       return view("ver-receta",["receta"=>$receta,"users"=> $users,"comentarios"=>$comentarios,"likes"=> $likes]);
     }
     /**
      * Store a newly created resource in storage.

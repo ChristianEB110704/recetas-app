@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComentariosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecetasController;
 use App\Http\Controllers\RolesController;
@@ -44,6 +45,10 @@ Route::post('/recetas/create/save', [RecetasController::class, 'save'])->middlew
 Route::get('/recetas/ver-recetas', [RecetasController::class, 'verReceta'])->name("recetas.verReceta")->middleware('auth');
 Route::get('/recetas/admin', [RecetasController::class, 'adminRecetas'])->name('recetas.adminRecetas')->middleware(['auth',AdminMiddleware::class]);
 Route::get('/recetas/admin/{tipo}/{id}', [RecetasController::class, 'delete'])->middleware(['auth',AdminMiddleware::class]);
+
+Route::post('/comentarios/create', [ComentariosController::class, 'create'])->name("comentario.create")->middleware('auth');
+Route::get('/comentarios/delete', [ComentariosController::class, 'delete'])->name('comentario.delete')->middleware(['auth',AdminMiddleware::class]);
+
 
 Route::get('/categoria/delete', [RecetasController::class, 'borrarCat'])->name("recetas.borrarCat")->middleware(['auth',AdminMiddleware::class]);
 Route::get('/categoria/create', [RecetasController::class, 'crearCat'])->name("recetas.crearCat")->middleware(['auth',AdminMiddleware::class]);
