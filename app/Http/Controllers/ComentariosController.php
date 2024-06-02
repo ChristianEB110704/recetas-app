@@ -17,9 +17,23 @@ class ComentariosController extends Controller
         return redirect()->route('recetas.verReceta',["id"=>$recetas_id]);
     }
 
-    public function agregarLike()
-    {
-        //
+    public function likes(Request $request){
+        $comentario=Comentario::find($request->input("comentario"));
+        $l=ComentarioUsuario::where("user_id",auth()->user()->id)->get();
+        $likes=[];
+        foreach ($l as $like) {
+            $likes[] = $like->comentarios_id;
+        }
+        if(!in_array($comentario->id, $likes)){
+            ComentarioUsuario::create([
+                "comentarios_id"=>$comentario->id,
+                "user_id"=>auth()->user()->id,
+            ]);
+            $comentario->like= $comentario->like+1;
+            $comentario->save();
+        }
+        $recetas_id=$comentario->recetas_id;
+        return redirect()->route('recetas.verReceta',["id"=>$recetas_id]);
     }
 
     public function delete(Request $request){

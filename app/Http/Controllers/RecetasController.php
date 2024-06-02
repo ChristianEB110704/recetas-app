@@ -36,7 +36,7 @@ class RecetasController extends Controller
        $l=ComentarioUsuario::where("user_id",Auth::user()->id)->get();
        $likes=[];
        foreach ($l as $like) {
-        $likes[] = $like->comentario_id;
+        $likes[] = $like->comentarios_id;
        }
        return view("ver-receta",["receta"=>$receta,"users"=> $users,"comentarios"=>$comentarios,"likes"=> $likes]);
     }
