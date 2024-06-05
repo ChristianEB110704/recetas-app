@@ -49,6 +49,7 @@ Route::get('/recetas/admin/{tipo}/{id}', [RecetasController::class, 'delete'])->
 Route::post('/comentarios/create', [ComentariosController::class, 'create'])->name("comentario.create")->middleware('auth');
 Route::get('/comentarios/delete', [ComentariosController::class, 'delete'])->name('comentario.delete')->middleware(['auth',AdminMiddleware::class]);
 Route::get('/comentarios/likes', [ComentariosController::class, 'likes'])->name('comentario.likes')->middleware('auth');
+Route::get('/comentarios/dislikes', [ComentariosController::class, 'dislikes'])->name('comentario.dislikes')->middleware('auth');
 
 
 Route::get('/categoria/delete', [RecetasController::class, 'borrarCat'])->name("recetas.borrarCat")->middleware(['auth',AdminMiddleware::class]);

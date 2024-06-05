@@ -109,6 +109,12 @@ class RecetasController extends Controller
         else{
             return abort(403,"Datos introducidos no validos");
         }   
+
+        foreach(Comentario::where('recetas_id', $id)->get() as $comentario){
+            $this->deleteSinRedirigir($comentario->id);
+        }
+
+
         $imagenes = Imagenes::where('tabla', $datos)
                             ->where('recetas_id', $id)
                             ->first();
@@ -154,5 +160,12 @@ class RecetasController extends Controller
             'name' => $request->input("name"),
         ]);
         return redirect()->route("recetas.adminRecetas");
+    }
+
+    public function deleteSinRedirigir(int $id){
+        $comentario=Comentario::find($id);
+        ComentarioUsuario::where('comentarios_id', $comentario->id)->delete();
+        $recetas_id=$comentario->recetas_id;
+        $comentario->delete();
     }
 }

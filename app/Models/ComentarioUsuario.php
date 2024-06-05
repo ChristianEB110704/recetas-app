@@ -10,10 +10,10 @@ class ComentarioUsuario extends Model
     use HasFactory;
     protected $table = "usuarios_like";
 
-    protected $primaryKey = 'user_id';
-
     protected $fillable = [
                     "user_id",
                     "comentarios_id",
     ];
+    public $incrementing = false;
+    protected $primaryKey = ['user_id', 'comentarios_id'];
 }
