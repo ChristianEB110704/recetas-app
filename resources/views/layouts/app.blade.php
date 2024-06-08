@@ -31,6 +31,18 @@
             <main>
                 {{ $slot }}
             </main>
+            <footer class="bg-gray-900 text-white py-6 fixed bottom-0 w-full">
+                <div class="container mx-auto flex justify-between items-center">
+                    <div>
+                        <p class="text-sm">&copy; {{ date('Y') }} Mi Sitio Web. Todos los derechos reservados.</p>
+                        <p class="text-sm">Desarrollado con <span class="text-red-500">&hearts;</span> por Christian</p>
+                    </div>
+                    <div>
+                        <p class="text-sm">Versión de Laravel: {{ app()->version() }}</p>
+                        <p class="text-sm">Versión de PHP: {{ phpversion() }}</p>
+                    </div>
+                </div>
+            </footer>
         </div>
     </body>
 </html>

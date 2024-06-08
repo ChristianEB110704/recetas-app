@@ -18,13 +18,13 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-12">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @foreach($recetas as $receta)
                     <a href="{{route('recetas.verReceta', ['id' => $receta->id])}}" active="{{request()->routeIs('recetas')}}">
                         <div class="bg-white shadow-md rounded-lg p-6 mb-4 flex items-center"> <!-- Usamos flex para alinear la imagen y el contenido -->
                             @foreach($imagenes as $img)
-                                @if ($receta->id == $img->recetas_id && $img->tabla == "recetas")
+                                @if ($receta->id == $img->recetas_id)
                                     <img src="{{ asset(Storage::disk('public')->url($img->ruta)) }}" alt="Imagen" class="w-32 h-32 rounded-md mr-6" style="max-width: 120px; height: auto; margin-right:10px;"> <!-- Ajusta el tamaño y el borde de la imagen según tus necesidades -->
                                 @endif
                             @endforeach

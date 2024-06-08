@@ -23,15 +23,15 @@
                             @foreach($users as $user)
                                 @if($user->id == $receta->user_id)
                                     @if ($user->roles_id == 1)
-                                        <mark class="px-2 text-white bg-yellow-400 rounded dark:bg-yellow-500">
+                                        <mark class="px-2 text-white bg-yellow-400 rounded dark:bg-yellow-500 lg:text-5xl">
                                             {{$user->name}}
                                         </mark>
                                     @elseif($user->roles_id == 3)
-                                        <mark class="px-2 text-white bg-gray-400 rounded dark:bg-yellow-500">
+                                        <mark class="px-2 text-white bg-gray-400 rounded dark:bg-yellow-500 lg:text-5xl">
                                             {{$user->name}}
                                         </mark>
                                     @else
-                                        <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500">
+                                        <mark class="px-2 text-white bg-blue-600 rounded dark:bg-blue-500 lg:text-5xl">
                                             {{$user->name}}
                                         </mark>
                                     @endif
@@ -48,22 +48,27 @@
                         class="px-3 py-2 text-xs font-medium text-center text-white bg-green-700 rounded-full dark:bg-green-600">
                         {{$receta->categoria}}
                     </button>
-                    <br /><br />
-                    <h1
-                        class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-700 md:text-2xl lg:text-3xl dark:text-white">
-                        Descripcion
-                    </h1>
-                    <p class="my-4 text-lg text-gray-500 ">
-                        {!! nl2br(strip_tags($receta->descripcion)) !!}
-                    </p>
-                    <h1
-                        class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-700 md:text-2xl lg:text-3xl dark:text-white">
-                        Pasos
-                    </h1>
-                    <p class="my-4 text-lg text-gray-500">
-                        {!! nl2br(strip_tags($receta->pasos)) !!}
-                    </p>
-                    <br>
+                    <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col md:flex-row">
+                        <div class="md:w-1/2 md:pr-6">
+                            <h1
+                                class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-700 md:text-2xl lg:text-3xl dark:text-white">
+                                Descripcion
+                            </h1>
+                            <p class="my-4 text-lg text-gray-500 ">
+                                {!! nl2br(strip_tags($receta->descripcion)) !!}
+                            </p>
+                            <h1
+                                class="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-700 md:text-2xl lg:text-3xl dark:text-white">
+                                Pasos
+                            </h1>
+                            <p class="my-4 text-lg text-gray-500">
+                                {!! nl2br(strip_tags($receta->pasos)) !!}
+                            </p>
+                        </div>
+                        <div class="md:w-1/2 md:pr-6">
+                            <img src="{{ asset(Storage::disk('public')->url($imagen->ruta)) }}" alt="Imagen" class="w-full rounded-md"/>
+                        </div>
+                    </div>
                     <a href="{{route('recetas.index')}}"
                         class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:blue-blue-500 rounded">
                         Volver
@@ -76,7 +81,7 @@
         </div>
     </div>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-12">
             <div class="p-6 text-gray-900 dark:text-gray-100">
                 <h2 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">Comentarios</h2>
                 @foreach ($comentarios as $comentario)
