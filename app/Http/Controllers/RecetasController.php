@@ -30,16 +30,16 @@ class RecetasController extends Controller
     }
 
     public function verReceta(Request $request){
-       $receta=Recetas::find($request->input("id")); 
-       $users=User::all(); 
-       $imagen= Imagenes::where("tabla","recetas")->where("recetas_id",$request->input("id"))->first();
-       $comentarios=Comentario::where("recetas_id",$receta->id)->get();
-       $l=ComentarioUsuario::where("user_id",Auth::user()->id)->get();
-       $likes=[];
-       foreach ($l as $like) {
-        $likes[] = $like->comentarios_id;
-       }
-       return view("ver-receta",["receta"=>$receta,"users"=> $users,"comentarios"=>$comentarios,"likes"=> $likes,"imagen"=>$imagen]);
+        $receta=Recetas::find($request->input("id")); 
+        $users=User::all(); 
+        $imagen= Imagenes::where("tabla","recetas")->where("recetas_id",$request->input("id"))->first();
+        $comentarios=Comentario::where("recetas_id",$receta->id)->whereNotIn('user_id',User::where("roles_id",3)->get('id'))->get();
+        $l=ComentarioUsuario::where("user_id",Auth::user()->id)->get();
+        $likes=[];
+        foreach ($l as $like) {
+            $likes[] = $like->comentarios_id;
+        }
+        return view("ver-receta",["receta"=>$receta,"users"=> $users,"comentarios"=>$comentarios,"likes"=> $likes,"imagen"=>$imagen]);
     }
     /**
      * Store a newly created resource in storage.
