@@ -27,11 +27,13 @@
                     </x-nav-link>
                 </div>
 
+                @if(auth()->user()->roles_id==1)
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles')" class="text-red-600">
                         {{ __('Administrar roles') }}
                     </x-nav-link>
                 </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -51,7 +53,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->

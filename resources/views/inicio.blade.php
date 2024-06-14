@@ -34,7 +34,7 @@
                             </div>
                             <!-- Item 3 -->
                             <div x-show="activeSlide === 2" x-transition:enter="transition-opacity ease-out duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-in duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
-                                <img src="{{ asset('images/pan3.jpg') }}" class="absolute block w-full h-full object-cover" alt="Pan 3">
+                                <img src="{{ asset('images/pan3.webp') }}" class="absolute block w-full h-full object-cover" alt="Pan 3">
                             </div>
                             <!-- Item 4 -->
                             <div x-show="activeSlide === 3" x-transition:enter="transition-opacity ease-out duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-in duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">

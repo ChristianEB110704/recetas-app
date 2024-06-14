@@ -46,13 +46,38 @@ class RecetasController extends Controller
      */
     public function save(Request $request){
         $user = Auth::user();
+        $error=[];
         $titulo = $request->input('nombre');
+        if(empty($titulo)){
+            $error['titulo']="No se agrego el titulo";
+        }
         $duracion = $request->input('duracion');
+        if(empty($duracion)){
+            $error['duracion']="No se agrego la duracion";
+        }
         $categoria = $request->input('categoria');
+        if($categoria==""){
+            $error['categoria']="No se agrego la categoria";
+        }
         $descripcion =  nl2br($request->input('descripcion'));
+        if(empty($descripcion)){
+            $error['descripcion']="No se agrego la descripción";
+        }
         $pasos =  nl2br($request->input('pasos'));
-        $imagen = $request->file('imagen')->store('public');
+        if(empty($pasos)){
+            $error['pasos']="No se agrego los pasos";
+        }
+        if(empty($request->file("imagen"))){
+            $error['imagen']="No se agrego una imagen";
+        }else{
+            $imagen = $request->file('imagen')->store('public');
+        }
         
+        if(sizeof($error)!=0){
+            $categorias= Categoria::all(); 
+            return redirect()->back()->withErrors($error)->withInput();
+        }
+
         if ($user->roles_id==1){
             $nuevaReceta=Recetas::create([
                 'nombre' => $titulo,
