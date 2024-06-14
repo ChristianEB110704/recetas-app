@@ -14,7 +14,7 @@
                         <p class="mb-4">Nos apasiona la idea de que todos, desde principiantes hasta expertos, puedan explorar el mundo de la panadería y la repostería de una manera divertida y accesible. Ya sea que estés buscando recetas clásicas para mimar a tu familia o desafíos culinarios para impresionar a tus amigos, aquí encontrarás un lugar donde puedes experimentar libremente y desarrollar tus habilidades.</p>
                         <p class="mb-4">Además, creemos en la importancia de compartir conocimientos y experiencias. Esta página no solo se trata de recetas y técnicas, sino también de historias, tradiciones y culturas que rodean al mundo de la cocina. Queremos crear una comunidad donde podamos aprender unos de otros y celebrar nuestra pasión común por la comida.</p>
                         <p class="mb-4">¡Gracias por unirte a nosotros en esta emocionante aventura gastronómica! Esperamos que disfrutes explorando nuestras recetas, compartiendo tus propias creaciones y siendo parte de nuestra vibrante comunidad.</p>
-                        <p class="mb-4">Con amor y harina,</p>
+                        <p class="mb-4">Con amor y mucha miga,</p>
                         <p class="mb-4">Christian Expósito</p>
                     </div>
 

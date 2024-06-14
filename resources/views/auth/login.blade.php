@@ -2,7 +2,7 @@
     <!-- Estado de sesión -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+    <form method="POST" action="{{ route('login') }}" class="max-w-md mx-auto bg-white p-6 rounded-lg ">
         @csrf
 
         <!-- Título -->
