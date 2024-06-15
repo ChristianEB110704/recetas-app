@@ -10,7 +10,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-12">
                 <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 flex flex-col md:flex-row">
-                    <form class="w-full md:w-2/3 mb-6 md:mb-0" action="/recetas/create/save" method="POST" enctype="multipart/form-data">
+                    <form class="w-full md:w-2/3 mb-6 md:mb-0" action="{{url('/recetas/create/save')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="flex flex-wrap -mx-3 mb-6">
                             <div class="w-full md:w-2/3 px-3 mb-6 md:mb-0">

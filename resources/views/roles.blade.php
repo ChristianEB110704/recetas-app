@@ -56,7 +56,7 @@
             var enlace = document.createElement("a");
             enlace.textContent = "Agregar " + nombre;
             enlace.setAttribute("class", "inline-block bg-white hover:bg-gray-100 text-gray-800 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow-sm");
-            enlace.href = "http://127.0.0.1:8000/roles/crear-roles/" + nombre;
+            enlace.href = "url{{'/roles/crear-roles'}}/" + nombre;
             document.getElementById("nuevoRol").appendChild(enlace);
             document.getElementById("nuevoRol").appendChild(document.createElement("br"));
         }

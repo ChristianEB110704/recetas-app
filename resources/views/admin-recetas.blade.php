@@ -33,7 +33,7 @@
                                             <td class="border px-4 py-2">{{$receta->nombre}}</td>
                                             <td class="border px-4 py-2">{{$receta->categoria}}</td>
                                             <td class="border px-4 py-2">
-                                                <a href="/recetas/admin/r/{{  $receta->id }}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta receta?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>
+                                                <a href="{{url('/recetas/admin/r')}}/{{  $receta->id }}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta receta?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -110,10 +110,10 @@
                                             <td class="border px-4 py-2 max-w-xs break-words">{{$receta->pasos}}</td>
                                             <td class="border px-4 py-2 max-w-xs break-words">{{$receta->categoria}}</td>
                                             <td class="border px-4 py-2 max-w-xs">
-                                                <a href="/recetas/admin/validar/{{  $receta->id }}" class="bg-green-500 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Validar</a>
+                                                <a href="{{url('/recetas/admin/validar')}}/{{  $receta->id }}" class="bg-green-500 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Validar</a>
                                             </td>
                                             <td class="border px-4 py-2 max-w-xs">
-                                                <a href="/recetas/admin/rsv/{{  $receta->id }}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta receta?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-2 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>
+                                                <a href="{{url('/recetas/admin/rsv')}}/{{  $receta->id }}" onclick="return confirm('¿Estás seguro de que deseas eliminar esta receta?')" class="bg-red-500 hover:bg-red-400 text-white font-bold py-1 px-2 border-b-4 border-red-700 hover:border-red-500 rounded">Eliminar</a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -131,7 +131,7 @@
     <script>
         function crearCategoria() {
             var catNueva = document.getElementById('catNueva').value;
-            var url = '/categoria/create?name=' + catNueva;
+            var url = "{{url('/categoria/create')}}?name=" + catNueva;
             window.location.href = url;
         }
     </script>
