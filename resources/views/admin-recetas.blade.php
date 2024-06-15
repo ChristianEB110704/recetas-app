@@ -106,8 +106,8 @@
                                             <td class="border px-4 py-2 max-w-xs break-words">{{$receta->id}}</td>
                                             <td class="border px-4 py-2 max-w-xs break-words">{{$receta->user_id}}</td>
                                             <td class="border px-4 py-2 max-w-xs break-words">{{$receta->nombre}}</td>
-                                            <td class="border px-4 py-2 max-w-xs break-words">{{$receta->descripcion}}</td>
-                                            <td class="border px-4 py-2 max-w-xs break-words">{{$receta->pasos}}</td>
+                                            <td class="border px-4 py-2 max-w-xs break-words">{!! nl2br(strip_tags($receta->descripcion)) !!}</td>
+                                            <td class="border px-4 py-2 max-w-xs break-words">{!! nl2br(strip_tags($receta->pasos)) !!}</td>
                                             <td class="border px-4 py-2 max-w-xs break-words">{{$receta->categoria}}</td>
                                             <td class="border px-4 py-2 max-w-xs">
                                                 <a href="{{url('/recetas/admin/validar')}}/{{  $receta->id }}" class="bg-green-500 hover:bg-green-400 text-white font-bold py-1 px-2 border-b-4 border-green-700 hover:border-green-500 rounded">Validar</a>
